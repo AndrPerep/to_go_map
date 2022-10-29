@@ -1,4 +1,7 @@
 from django.contrib import admin
 from places.models import CityProject
 
-admin.site.register(CityProject)
+
+@admin.register(CityProject)
+class CityProjectAdmin(admin.ModelAdmin):
+    list_display = ['title']
