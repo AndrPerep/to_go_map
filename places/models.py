@@ -8,3 +8,14 @@ class CityProject(models.Model):
     lng = models.FloatField()
     lat = models.FloatField()
 
+    def __str__(self):
+        return self.title
+
+
+class Image(models.Model):
+    picture = models.ImageField()
+    city_project = models.ForeignKey(
+        CityProject,
+        on_delete=models.SET_NULL,
+        null=True
+    )
