@@ -3,8 +3,9 @@ from django.db import models
 
 class CityProject(models.Model):
     title = models.TextField(max_length=100)
-    description_short = models.TextField(max_length=500)
-    description_long = models.TextField()
+    place_id = models.TextField(max_length=50, null=True)
+    description_short = models.TextField(max_length=500, null=True)
+    description_long = models.TextField(null=True)
     lng = models.FloatField()
     lat = models.FloatField()
 
