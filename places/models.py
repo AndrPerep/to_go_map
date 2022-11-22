@@ -17,6 +17,7 @@ class Image(models.Model):
     picture = models.ImageField()
     city_project = models.ForeignKey(
         CityProject,
+        related_name='images',
         on_delete=models.SET_NULL,
         null=True
     )
