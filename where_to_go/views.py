@@ -55,8 +55,6 @@ def show_map(request):
 def show_place(request=None, place_id=1):
     place = get_object_or_404(CityProject, id=place_id)
 
-    print(place.images.all()[1].picture.url)
-
     formated_place = {
         "title": place.title,
         "imgs": [item.picture.url for item in place.images.all()],
