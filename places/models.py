@@ -1,11 +1,12 @@
 from django.db import models
+from tinymce.models import HTMLField
 
 
 class CityProject(models.Model):
     title = models.TextField(max_length=100)
-    place_id = models.TextField(max_length=50, null=True, blank=True)
-    description_short = models.TextField(max_length=500, null=True, blank=True)
-    description_long = models.TextField(null=True, blank=True)
+    place_id = models.TextField(max_length=50, blank=True, default='')
+    description_short = models.TextField(max_length=500, blank=True, default='')
+    description_long = HTMLField(null=True, blank=True)
     lng = models.FloatField()
     lat = models.FloatField()
 
