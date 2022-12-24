@@ -1,11 +1,15 @@
 from django.contrib import admin
 from places.models import CityProject, Image
 from django.utils.html import format_html
+from adminsortable2.admin import SortableAdminBase, SortableAdminMixin, SortableTabularInline
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableTabularInline):
     model = Image
     readonly_fields = ['show_image']
+
+    list_display = ['picture', 'show_image', 'order']
+    fields = ['show_image', 'order']
 
     def show_image(self, obj):
         return format_html('<img src="{url}" width="{width}" height={height} />'.format(
@@ -17,22 +21,11 @@ class ImageInline(admin.TabularInline):
 
 
 @admin.register(CityProject)
-class CityProjectAdmin(admin.ModelAdmin):
-    list_display = ['title']
+class CityProjectAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [ImageInline]
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'city_project']
+class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ['id', 'city_project', 'order']
     fields = ['city_project']
-    readonly_fields = ['show_image']
-
-    def show_image(self, obj):
-        return format_html('<img src="{url}" width="{width}" height={height} />'.format(
-            url=obj.picture.url,
-            width=obj.picture.width/(obj.picture.height/200),
-            height=200,
-        )
-        )
-
