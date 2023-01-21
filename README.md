@@ -13,7 +13,8 @@ Cайт о самых интересных местах в городе. [Дем
 * Определение переменных окружения в файле `.env`, лежащем в корне проекта:
 ```dotenv
     DEBUG=False #режим отладки Django
-    SECRET_KEY=secret_key   #секретный ключ Django
+    SECRET_KEY=secret_key #секретный ключ Django
+    ALLOWED_HOSTS=[https://127.0.0.1, https://site.com] #список разрешённых адресов для сайта
 ```
 * Запуск веб-сервера Django:
 ```commandline
