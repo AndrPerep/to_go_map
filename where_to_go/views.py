@@ -37,7 +37,8 @@ def show_map(request):
                 "title": place.title,
                 "placeId": "roofs24",
                 "detailsUrl": reverse(
-                    'show_place_name', args=[place.id], current_app='places'
+                    show_place,
+                    kwargs={'place_id': place.id},
                 )
             }
         }
@@ -52,7 +53,7 @@ def show_map(request):
     return render(request, 'index.html', context=geo_data)
 
 
-def show_place(request=None, place_id=1):
+def show_place(request, place_id=1):
     place = get_object_or_404(CityProject, id=place_id)
 
     formated_place = {

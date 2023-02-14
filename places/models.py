@@ -24,7 +24,7 @@ class Image(models.Model):
     )
     order = models.PositiveIntegerField(
         default=0,
-        db_index=True
+        db_index=True,
     )
 
     class Meta:

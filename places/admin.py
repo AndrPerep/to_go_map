@@ -28,4 +28,4 @@ class CityProjectAdmin(SortableAdminBase, admin.ModelAdmin):
 @admin.register(Image)
 class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
     list_display = ['id', 'city_project', 'order']
-    fields = ['city_project']
+    fields = ['city_project', 'picture']
