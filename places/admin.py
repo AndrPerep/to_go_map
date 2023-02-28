@@ -26,5 +26,5 @@ class CityProjectAdmin(SortableAdminBase, admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
-    list_display = ['id', 'city_project', 'order']
+    list_display = ['id', 'place', 'order']
     fields = ['city_project', 'picture']
