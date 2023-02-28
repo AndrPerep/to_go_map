@@ -44,7 +44,7 @@ class Command(BaseCommand):
                 picture = ContentFile(img_response.content, name=f"{json_address['title']} ({number}).jpg")
                 Image.objects.get_or_create(
                     order=number,
-                    city_project=obj,
+                    place=obj,
                     picture=picture
                 )
 
