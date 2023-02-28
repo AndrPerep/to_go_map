@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
-from places.models import CityProject
+from places.models import Place
 
 
 def get_place_details(place):
@@ -26,7 +26,7 @@ def get_place_details(place):
 def show_map(request):
     features = []
 
-    for place in CityProject.objects.all():
+    for place in Place.objects.all():
         feature = {
             "type": "Feature",
             "geometry": {
@@ -54,7 +54,7 @@ def show_map(request):
 
 
 def show_place(request, place_id=1):
-    place = get_object_or_404(CityProject, id=place_id)
+    place = get_object_or_404(Place, id=place_id)
 
     formated_place = {
         "title": place.title,

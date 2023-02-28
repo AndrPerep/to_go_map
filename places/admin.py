@@ -1,5 +1,5 @@
 from django.contrib import admin
-from places.models import CityProject, Image
+from places.models import Place, Image
 from django.utils.html import format_html
 from adminsortable2.admin import SortableAdminBase, SortableAdminMixin, SortableTabularInline
 
@@ -19,7 +19,7 @@ class ImageInline(SortableTabularInline):
         )
 
 
-@admin.register(CityProject)
+@admin.register(Place)
 class CityProjectAdmin(SortableAdminBase, admin.ModelAdmin):
     inlines = [ImageInline]
 

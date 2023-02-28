@@ -6,7 +6,7 @@ import logging
 from django.core.management.base import BaseCommand
 from django.core.files.base import ContentFile
 from django.core.exceptions import MultipleObjectsReturned
-from places.models import CityProject, Image
+from places.models import Place, Image
 
 
 class Command(BaseCommand):
@@ -29,7 +29,7 @@ class Command(BaseCommand):
         )
 
     def load_to_database(self, json_address):
-        obj, created = CityProject.objects.get_or_create(
+        obj, created = Place.objects.get_or_create(
             title=json_address['title'],
             description_short=json_address['description_short'],
             description_long=json_address['description_long'],

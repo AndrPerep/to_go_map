@@ -2,7 +2,7 @@ from django.db import models
 from tinymce.models import HTMLField
 
 
-class CityProject(models.Model):
+class Place(models.Model):
     title = models.TextField(max_length=100)
     place_id = models.TextField(max_length=50, blank=True, default='')
     description_short = models.TextField(max_length=500, blank=True, default='')
@@ -17,7 +17,7 @@ class CityProject(models.Model):
 class Image(models.Model):
     picture = models.ImageField()
     city_project = models.ForeignKey(
-        CityProject,
+        Place,
         related_name='images',
         on_delete=models.SET_NULL,
         null=True
