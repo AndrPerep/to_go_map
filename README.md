@@ -2,7 +2,7 @@
 
 Cайт о самых интересных местах в городе. [Демка сайта](http://parampamk.pythonanywhere.com/)
 
-![&#x41A;&#x443;&#x434;&#x430; &#x43F;&#x43E;&#x439;&#x442;&#x438;](/site.png)
+![&#x41A;&#x443;&#x434;&#x430; &#x43F;&#x43E;&#x439;&#x442;&#x438;](static_src/site.png)
 
 ## Как запустить
 
@@ -59,7 +59,7 @@ Cайт о самых интересных местах в городе. [Дем
 
 Внизу справа на странице можно включить отладочный режим логгирования.
 
-![debug mode](/debug-option.png)
+![debug mode](static_src//debug-option.png)
 
 Настройки сохраняются в Local Storage браузера и не пропадают после обновления страницы. Чтобы сбросить настройки удалите ключи из Local Storage с помощью Chrome Dev Tools —&gt; Вкладка Application —&gt; Local Storage.
 
