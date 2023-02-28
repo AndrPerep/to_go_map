@@ -12,11 +12,10 @@ class ImageInline(SortableTabularInline):
     fields = ['show_image', 'order']
 
     def show_image(self, obj):
-        return format_html('<img src="{url}" width="{width}" height={height} />'.format(
+        return format_html('<img src="{url}" width="{width}" height={height} />',
             url=obj.picture.url,
             width=obj.picture.width/(obj.picture.height/200),
             height=200,
-        )
         )
 
 
