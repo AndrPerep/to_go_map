@@ -7,22 +7,6 @@ from django.urls import reverse
 from places.models import Place
 
 
-def get_place_details(place):
-    formated_place = {
-        "title": place.title,
-        "imgs": [MEDIA_ROOT + item.picture.url for item in place.images.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
-        "coordinates": {
-            "lng": place.lng,
-            "lat": place.lat,
-        },
-    }
-    from pprint import pprint
-    pprint(formated_place)
-    return formated_place
-
-
 def show_map(request):
     features = []
 
@@ -56,7 +40,7 @@ def show_map(request):
 def show_place(request, place_id=1):
     place = get_object_or_404(Place, id=place_id)
 
-    formated_place = {
+    formatted_place = {
         "title": place.title,
         "imgs": [item.picture.url for item in place.images.all()],
         "description_short": place.description_short,
@@ -67,4 +51,4 @@ def show_place(request, place_id=1):
         },
     }
 
-    return JsonResponse(formated_place, json_dumps_params={'indent': 2, 'ensure_ascii': False})
+    return JsonResponse(formatted_place, json_dumps_params={'indent': 2, 'ensure_ascii': False})
