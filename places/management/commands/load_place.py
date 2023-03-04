@@ -28,22 +28,22 @@ class Command(BaseCommand):
             dest='directory'
         )
 
-    def load_to_database(self, json_address):
+    def load_to_database(self, place_data):
         obj, created = Place.objects.get_or_create(
-            title=json_address['title'],
+            title=place_data['title'],
             defaults={
-                'description_short': json_address['description_short'],
-                'description_long': json_address['description_long'],
-                'lng': json_address['coordinates']['lng'],
-                'lat': json_address['coordinates']['lat'],
+                'description_short': place_data['description_short'],
+                'description_long': place_data['description_long'],
+                'lng': place_data['coordinates']['lng'],
+                'lat': place_data['coordinates']['lat'],
             },
         )
         if created:
-            for number, image_url in enumerate(json_address['imgs']):
+            for number, image_url in enumerate(place_data['imgs']):
                 img_response = requests.get(image_url)
                 img_response.raise_for_status()
 
-                picture = ContentFile(img_response.content, name=f"{json_address['title']} ({number}).jpg")
+                picture = ContentFile(img_response.content, name=f"{place_data['title']} ({number}).jpg")
                 Image.objects.get_or_create(
                     order=number,
                     place=obj,
@@ -53,24 +53,18 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         address = options['address']
-        if address:
-            try:
+        directory = options['directory']
+        try:
+            if address:
                 response = requests.get(address)
                 response.raise_for_status()
                 self.load_to_database(response.json())
-            except MultipleObjectsReturned:
-                logging.exception('Дубликаты в базе данных')
-            except [requests.exceptions.ConnectionError, requests.exceptions.HTTPError]:
-                logging.exception('Проблемы при загрузке данных')
-
-        directory = options['directory']
-        if directory:
-            files = [os.path.join(directory, filename) for filename in os.listdir(directory)]
-            try:
+            if directory:
+                files = [os.path.join(directory, filename) for filename in os.listdir(directory)]
                 for filepath in files:
                     with open(filepath, 'r', encoding='utf-8') as file:
                         self.load_to_database(json.load(file))
-            except MultipleObjectsReturned:
-                logging.exception('Дубликаты в базе данных')
-            except [requests.exceptions.ConnectionError, requests.exceptions.HTTPError]:
-                logging.exception('Проблемы при загрузке данных')
+        except MultipleObjectsReturned:
+            logging.exception('Дубликаты в базе данных')
+        except [requests.exceptions.ConnectionError, requests.exceptions.HTTPError]:
+            logging.exception('Проблемы при загрузке данных')
