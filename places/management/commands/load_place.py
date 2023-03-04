@@ -31,10 +31,12 @@ class Command(BaseCommand):
     def load_to_database(self, json_address):
         obj, created = Place.objects.get_or_create(
             title=json_address['title'],
-            description_short=json_address['description_short'],
-            description_long=json_address['description_long'],
-            lng=json_address['coordinates']['lng'],
-            lat=json_address['coordinates']['lat'],
+            defaults={
+                'description_short': json_address['description_short'],
+                'description_long': json_address['description_long'],
+                'lng': json_address['coordinates']['lng'],
+                'lat': json_address['coordinates']['lat'],
+            },
         )
         if created:
             for number, image_url in enumerate(json_address['imgs']):
