@@ -5,8 +5,8 @@ from tinymce.models import HTMLField
 class Place(models.Model):
     title = models.TextField(max_length=100, verbose_name='Заголовок')
     place_id = models.TextField(max_length=50, blank=True, default='', verbose_name='id места')
-    description_short = models.TextField(max_length=500, blank=True, default='', verbose_name='краткое описание')
-    description_long = HTMLField(blank=True, verbose_name='полное описание')
+    short_description = models.TextField(max_length=500, blank=True, default='', verbose_name='краткое описание')
+    long_description = HTMLField(blank=True, verbose_name='полное описание')
     lng = models.FloatField(verbose_name='долгота')
     lat = models.FloatField(verbose_name='широта')
 

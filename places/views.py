@@ -1,5 +1,3 @@
-from where_to_go.settings import MEDIA_ROOT
-
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -19,7 +17,7 @@ def show_map(request):
             },
             "properties": {
                 "title": place.title,
-                "placeId": "roofs24",
+                "placeId": place.place_id,
                 "detailsUrl": reverse(
                     show_place,
                     kwargs={'place_id': place.id},
@@ -43,8 +41,8 @@ def show_place(request, place_id=1):
     formatted_place = {
         "title": place.title,
         "imgs": [item.picture.url for item in place.images.all()],
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "short_description": place.short_description,
+        "long_description": place.long_description,
         "coordinates": {
             "lng": place.lng,
             "lat": place.lat,
