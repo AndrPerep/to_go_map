@@ -36,8 +36,8 @@ Cайт о самых интересных местах в городе. [Дем
     "Адрес, откуда будет загружена картинка",
     "https://example.com/picture.jpg"
   ],
-  "description_short": "Короткое описание",
-  "description_long": "Полное описание",
+  "short_description": "Короткое описание",
+  "long_description": "Полное описание",
   "coordinates": {
     "lng": "37.5",  // * долгота
     "lat": "55.7" // * широта
