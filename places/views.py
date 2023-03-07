@@ -31,7 +31,7 @@ def show_map(request):
         }
     }
 
-    return render(request, 'index.html', context=geo_data)
+    return render(request, 'templates\index.html', context=geo_data)
 
 
 def show_place(request, place_id=1):
