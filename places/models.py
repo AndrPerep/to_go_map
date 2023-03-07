@@ -4,8 +4,7 @@ from tinymce.models import HTMLField
 
 class Place(models.Model):
     title = models.TextField(max_length=100, verbose_name='Заголовок')
-    place_id = models.TextField(max_length=50, blank=True, default='', verbose_name='id места')
-    short_description = models.TextField(max_length=500, blank=True, default='', verbose_name='краткое описание')
+    short_description = models.TextField(max_length=500, blank=True, verbose_name='краткое описание')
     long_description = HTMLField(blank=True, verbose_name='полное описание')
     lng = models.FloatField(verbose_name='долгота')
     lat = models.FloatField(verbose_name='широта')
@@ -17,10 +16,10 @@ class Place(models.Model):
 class Image(models.Model):
     picture = models.ImageField(verbose_name='изображение')
     place = models.ForeignKey(
-        'Place',
         Place,
+        on_delete=models.CASCADE,
         related_name='images',
-        verbose_name='место, с которым связано изображение'
+        verbose_name='место, с которым связано изображение',
     )
     order = models.PositiveIntegerField(
         default=0,

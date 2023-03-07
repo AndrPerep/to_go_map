@@ -17,7 +17,6 @@ def show_map(request):
             },
             "properties": {
                 "title": place.title,
-                "placeId": place.place_id,
                 "detailsUrl": reverse(
                     show_place,
                     kwargs={'place_id': place.id},
