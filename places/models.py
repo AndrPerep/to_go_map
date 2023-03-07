@@ -25,7 +25,6 @@ class Image(models.Model):
     order = models.PositiveIntegerField(
         default=0,
         db_index=True,
-        null=True,
         blank=True,
         verbose_name='порядковый номер'
     )
